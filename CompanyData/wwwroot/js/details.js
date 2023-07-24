@@ -1,6 +1,5 @@
 const urlParams = new URLSearchParams(window.location.search);
 const companyId = urlParams.get('id');
-
 let employeeId = null;
 
 function chooseEmployee(employee) {

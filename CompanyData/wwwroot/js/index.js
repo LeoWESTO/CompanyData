@@ -13,7 +13,7 @@ async function fetchData() {
             const companyNameCell = document.createElement('td');
             const companyNameLink = document.createElement('a');
             companyNameLink.textContent = company.name;
-            companyNameLink.href = `details.html?id=${company.id}`;
+            companyNameLink.href = `details.html?id=${company.id}`; //The text in the "Company Name" column should be a link that opens "Details" for its object
             companyNameCell.appendChild(companyNameLink);
             row.appendChild(companyNameCell);
 
@@ -51,6 +51,8 @@ async function addData() {
 
     refreshData();
 }
+
+//Implement behavior for 'Refresh' button: reload data from the server and recreate DOM in browser
 function refreshData() {
     fetchData();
 }

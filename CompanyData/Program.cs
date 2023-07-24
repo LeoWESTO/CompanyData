@@ -29,6 +29,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+//Use EntityFramework, store data in memory (add a code that creates initial data at application startup)
 using (var db = new DataContext(new DbContextOptionsBuilder<DataContext>().UseInMemoryDatabase("Companies").Options))
 {
     var initialCompanies = new[]

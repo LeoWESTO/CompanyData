@@ -5,10 +5,11 @@
 }
 
 .title {
-    font-size: large;
+    font-size: larger;
     margin: 20px;
 }
 
+/* Use CSS Flex to align groups in "Details", there should be 1 column of groups if browserwindow is narrow */
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -20,40 +21,43 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+
+    font-size: large;
 }
 
+/* Use CSS Grid to align items in groups in "Details" */
 .group {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr 1fr 5fr;
     gap: 10px;
-    padding: 10px;
     background-color: #fff;
     border: 1px solid #ccc;
 }
 
+
 .info {
-    flex-basis: 400px;
+    flex-basis: 400px; /* Set a fixed width for groups in "Details" */
 }
 
 .history {
-    flex-basis: 350px;
+    flex-basis: 350px; /* Set a fixed width for groups in "Details" */
 }
 
 .notes {
-    flex-basis: 350px;
+    flex-basis: 350px; /* Set a fixed width for groups in "Details" */
 }
 
 .employees {
-    flex-basis: 800px;
+    flex-basis: 800px; /* Adjust the "Employees" group to be nearly twice wider than other groups, keep vertical groups alignment */
 }
 
 .employees-content {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 1fr 1fr;
 }
 
 .caption {
-    background-color: #f8f8f8;
+    background-color: #c1c1c1;
     padding: 8px;
     font-weight: bold;
     border-bottom: 1px solid #ccc;
@@ -88,6 +92,10 @@ tbody tr:nth-child(even) {
 
 input {
     border-radius: 3px;
+    font-size: 15px;
+    flex-basis: 250px;
+    height: 30px;
+    font-style: oblique;
 }
 
 a {
