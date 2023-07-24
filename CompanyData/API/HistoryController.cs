@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CompanyData.Data;
 using CompanyData.Models;
+using CompanyData.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,71 +23,53 @@ namespace CompanyData.API
         [HttpGet]
         public async Task<ActionResult<IEnumerable<History>>> GetAll()
         {
-            if (_context.Histories == null)
-            {
-                return NotFound();
-            }
-            return await _context.Histories.Include(h => h.Company).ToListAsync();
+            return await _context.Histories
+                .Include(_ => _.Company)
+                .ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<History>> Get(int id)
         {
-            if (_context.Companies == null)
-            {
-                return NotFound();
-            }
-            var history = await _context.Histories.Include(h => h.Company).SingleOrDefaultAsync(_ => _.Id == id);
+            var historyById = await _context.Histories
+                .Include(_ => _.Company)
+                .FirstOrDefaultAsync();
 
-            if (history == null)
-            {
-                return NotFound();
-            }
+            if (historyById == null) return NotFound();
 
-            return history;
+            return Ok(historyById);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, History history)
+        [HttpPut]
+        public async Task<IActionResult> Put(HistoryViewModel historyViewModel)
         {
-            if (id != history.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(history).State = EntityState.Modified;
+            var updateHistory = _mapper.Map<History>(historyViewModel);
+            _context.Histories.Update(updateHistory);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(updateHistory);
         }
 
         [HttpPost]
-        public async Task<ActionResult<History>> Post(History history)
+        public async Task<IActionResult> Post(HistoryViewModel historyViewModel)
         {
-            if (_context.Histories == null)
-            {
-                return Problem("Entity set 'DataContext.Histories'  is null.");
-            }
-            _context.Histories.Add(history);
+            var newHistory = _mapper.Map<History>(historyViewModel);
+            _context.Histories.Add(newHistory);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(Get), new { id = history.Id }, history);
+            return Created($"/{newHistory.Id}", newHistory);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (_context.Histories == null)
-            {
-                return NotFound();
-            }
-            var history = await _context.Histories.FindAsync(id);
-            if (history == null)
-            {
-                return NotFound();
-            }
+            var historyToDelete = await _context.Histories
+                .Include(_ => _.Company)
+                .FirstOrDefaultAsync();
 
-            _context.Histories.Remove(history);
+            if (historyToDelete == null) return NotFound();
+
+            _context.Histories.Remove(historyToDelete);
             await _context.SaveChangesAsync();
 
             return NoContent();
