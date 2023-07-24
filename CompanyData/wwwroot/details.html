@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Company Details</title>
+    <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+
+    <div class="title">
+        <strong>Company details </strong>
+        <span id="companyNameTitle"></span>
+        <br />
+    </div>
+    
+    <div class="container">
+
+        <div class="group info">
+            <div class="caption">Info</div>
+            <div class="toolbar">
+                <button id="btn" onclick="applyInfo()"><ion-icon name="checkmark-sharp"></ion-icon></button>
+                <button id="btn" onclick="getInfo()"><ion-icon name="reload-sharp"></ion-icon></button>
+            </div>
+            <div class="content">
+                <div class="edit-box">
+                    <label for="id">ID:</label>
+                    <input type="text" id="id" name="id" placeholder="Enter ID" disabled>
+                </div>
+                <div class="edit-box">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter Name">
+                </div>
+                <div class="edit-box">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" placeholder="Enter Address">
+                </div>
+                <div class="edit-box">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" placeholder="Enter City">
+                </div>
+                <div class="edit-box">
+                    <label for="state">State:</label>
+                    <input type="text" id="state" name="state" placeholder="Enter State">
+                </div>
+                <div class="edit-box">
+                    <label for="phone">Phone:</label>
+                    <input type="text" id="phone" name="phone" placeholder="Enter Phone">
+                </div>
+            </div>
+        </div>
+
+        <div class="group history">
+            <div class="caption">History</div>
+            <div class="toolbar">
+                <button id="btn" onclick="getHistory()"><ion-icon name="reload-sharp"></ion-icon></button>
+            </div>
+            <div class="content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order Date</th>
+                            <th>Store City</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-history">
+                        <!-- Rows for the table in History group -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="group notes">
+            <div class="caption">Notes</div>
+            <div class="toolbar">
+                <button id="btn" onclick="getNotes()"><ion-icon name="reload-sharp"></ion-icon></button>
+            </div>
+            <div class="content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Invoice Number</th>
+                            <th>Employee</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-notes">
+                        <!-- Rows for the table in Notes group -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="group employees">
+            <div class="caption">Employees</div>
+            <div class="toolbar">
+                <button id="btn" onclick="addEmployee()"><ion-icon name="add-outline"></ion-icon></button>
+                <button id="btn" onclick="deleteEmployee()"><ion-icon name="trash-sharp"></ion-icon></button>
+                <button id="btn" onclick="editEmployee()"><ion-icon name="pencil-sharp"></ion-icon></button>
+                <button id="btn" onclick="getEmployees()"><ion-icon name="reload-sharp"></ion-icon></button>
+            </div>
+            <div class="employees-content">
+                <div class="content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-employees">
+                            <!-- Rows for the table in Employees group -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="content">
+                    <div class="edit-box">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="Enter First Name">
+                    </div>
+                    <div class="edit-box">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" id="lastName" name="lastName" placeholder="Enter Last Name">
+                    </div>
+                    <div class="edit-box">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" placeholder="Enter Title">
+                    </div>
+                    <div class="edit-box">
+                        <label for="birthDate">Birth Date:</label>
+                        <input type="date" id="birthDate" name="birthDate">
+                    </div>
+                    <div class="edit-box">
+                        <label for="position">Position:</label>
+                        <input type="text" id="position" name="position" placeholder="Enter Position">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="js/details.js" asp-append-version="true"></script>
+</body>
+</html>
